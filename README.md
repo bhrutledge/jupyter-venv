@@ -22,6 +22,7 @@ $ source $WORKON_HOME/jupyter-venv/bin/activate
 (jupyter-venv)$ git clone https://github.com/bhrutledge/jupyter-venv.git
 (jupyter-venv)$ cd jupyter-venv
 (jupyter-venv)$ pip install -r requirements.txt
+(jupyter-venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
 (jupyter-venv)$ jupyter notebook
 ```
 
@@ -76,6 +77,7 @@ You can now use all of the packages that installed in the `my-project` environme
 
 ## Reference
 
+* [Enabling ipywidgets](https://ipywidgets.readthedocs.io/en/stable/user_install.html)
 * [Using a virtualenv in an IPython notebook](http://help.pythonanywhere.com/pages/IPythonNotebookVirtualenvs)
 * [Installing the IPython kernel](https://ipython.readthedocs.io/en/latest/install/kernel_install.html)
 * [Making kernels for Jupyter](https://jupyter-client.readthedocs.io/en/latest/kernels.html)
