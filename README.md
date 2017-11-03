@@ -9,6 +9,7 @@ WORKON_HOME=$HOME/.virtualenvs
 PROJECT_HOME=$HOME/Code
 ```
 
+
 ## Install Jupyter
 
 **Note**: If you're using the Anaconda distribution of Python, you can probably skip this step, and just run `jupyter notebook` in the default environment.
@@ -41,39 +42,39 @@ $ source $WORKON_HOME/my-project/bin/activate
 # The `ipykernel` package should be added to this environment's requirements.txt
 (my-project)$ pip install ipykernel
 
-# Using Bash parameter expansion to get the virtual environment name
-(my-project)$ VENV=${VIRTUAL_ENV##*/}
-(my-project)$ python -m ipykernel install --user --name="$VENV" --display-name="Python ($VENV)"
+(my-project)$ python -m ipykernel install --user --name="$(basename $VIRTUAL_ENV)"
 ```
 
-On macOs, this will create a Jupyter kernel spec in `$HOME/Library/Jupyter/kernels/my-project`. You can edit `kernel.json` in that directory to set environment variables or pass additional arguments to `python`.
+On macOS, this will create a Jupyter kernel spec in `$HOME/Library/Jupyter/kernels/my-project`. You can edit `kernel.json` in that directory to set environment variables or pass additional arguments to `python`.
 
 
 ## Location of notebooks
 
-By default, new notebooks are created at the root directory of the notebook server (`~/Code/jupyter-venv` in this example). At the very least, I recommend using `New > Folder` to create a sub-directory with the name of your virtual environment (`my-project` in this example), and creating notebooks for that environment in that directory.
-
-However, this means that notebooks will still live in the `jupyter-venv` repo. If you'd prefer they live in the `my-project` repo, you can create a symbolic link:
+By default, new notebooks are created at the root directory of the notebook server (`~/Code/jupyter-venv` in this example). However, this means that notebooks created using the `my-project` kernel will live in the `jupyter-venv` directory. If you'd prefer that notebooks using the `my-project` kernel live in the `my-project` directory (e.g., to commit them to the same Git repo), you could create a symbolic link in the `jupyter-venv` directory:
 
 ```text
-(my-project)$ VENV=${VIRTUAL_ENV##*/}
-(my-project)$ mkdir "$PROJECT_HOME/$VENV/jupyter-notebooks"
-(my-project)$ ln -s "$PROJECT_HOME/$VENV/jupyter-notebooks" "$PROJECT_HOME/jupyter-venv/$VENV"
-(my-project)$ echo $VENV >> "$PROJECT_HOME/jupyter-venv/.gitignore"
+(jupyter-venv)$ mkdir venvs
+(jupyter-venv)$ echo venvs >> .gitignore
+(jupyter-venv)$ VENV=my-project
+(jupyter-venv)$ mkdir "$PROJECT_HOME/$VENV/jupyter-notebooks"
+(jupyter-venv)$ ln -s "$PROJECT_HOME/$VENV/jupyter-notebooks" "venvs/$VENV"
 ```
+
+Alternatively, you could run `jupyter notebook` from a parent directory containing all of your projects, and navigate to the `my-project` directory.
 
 
 ## Creating notebooks inside a virtual environment
 
-Now, reload your Jupyter Notebook browser tab, and you should see the sub-directory or symbolic link that you created:
+Now, reload your Jupyter Notebook browser tab, and you should see the sub-directory that you created:
 
-![Project sub-directory](img/nb-my-project-dir.png)
+![Project sub-directory](img/nb-venvs-dir.png)
 
-Click `my-project`, and then use `New > Python (my-project)` to create a notebook:
+Click `venvs`, then `my-project`, then use `New > my-project` to create a notebook:
 
 ![Project kernel](img/nb-my-project-kernel.png)
 
-You can now use all of the packages that installed in the `my-project` environment. It also means that you can't use the packages in the `jupyter-venv` environment, used by the default `Python 3` kernel. So, if you want to use packages like Pandas or matplotlib, you'll need to `pip install` them in the `my-project` environment (ideally by adding them to its `requirements.txt`).
+You can now use all of the packages that are installed in the `my-project` environment. It also means that you can't use the packages in the `jupyter-venv` environment, used by the default `Python 3` kernel. So, if you want to use packages like Pandas or matplotlib, you'll need to `pip install` them in the `my-project` environment (ideally by adding them to its `requirements.txt`).
+
 
 ## Reference
 
@@ -87,3 +88,4 @@ You can now use all of the packages that installed in the `my-project` environme
 
 - Rationale for not running `jupyter notebook` in project's virtual environment
 - Shell script for adding kernel and symlinking notebook directory
+- `brew install jupyter`?
