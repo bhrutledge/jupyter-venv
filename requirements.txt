@@ -1,4 +1,6 @@
 jupyter
+jupyterlab
+jupyter_contrib_nbextensions
 pandas
 matplotlib
 requests

@@ -24,6 +24,7 @@ $ source $WORKON_HOME/jupyter-venv/bin/activate
 (jupyter-venv)$ cd jupyter-venv
 (jupyter-venv)$ pip install -r requirements.txt
 (jupyter-venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
+(jupyter-venv)$ jupyter contrib nbextension install --sys-prefix
 (jupyter-venv)$ jupyter notebook
 ```
 
