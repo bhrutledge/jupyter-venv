@@ -24,13 +24,19 @@ $ source $WORKON_HOME/jupyter-venv/bin/activate
 (jupyter-venv)$ cd jupyter-venv
 (jupyter-venv)$ pip install -r requirements.txt
 (jupyter-venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
-(jupyter-venv)$ jupyter contrib nbextension install --sys-prefix
 (jupyter-venv)$ jupyter notebook
 ```
 
 You should now see the Jupyter Notebook server in your web browser, and you can create notebooks using `New > Python 3`:
 
 ![After install](img/nb-install.png)
+
+**Optional**: To run the notebook server without needing to activate its virtual environment, add a symbolic link to the `jupyter` executable to a directory in your `$PATH`, e.g.:
+
+```text
+$ ln -s "$WORKON_HOME/jupyter-venv/bin/jupyter" "$HOME/bin"
+$ jupyter notebook
+```
 
 
 ## Add virtual environment kernels
@@ -87,6 +93,6 @@ You can now use all of the packages that are installed in the `my-project` envir
 
 ## TODO
 
-- Rationale for not running `jupyter notebook` in project's virtual environment
+- Rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
 - Shell script for adding kernel and symlinking notebook directory
 - `brew install jupyter`?
