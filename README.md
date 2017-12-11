@@ -67,7 +67,7 @@ By default, new notebooks are created at the root directory of the notebook serv
 (jupyter-venv)$ ln -s "$PROJECT_HOME/$VENV/jupyter-notebooks" "venvs/$VENV"
 ```
 
-Alternatively, you could run `jupyter notebook` from a parent directory containing all of your projects, and navigate to the `my-project` directory.
+Alternatively, you could run `jupyter notebook` from a parent directory containing all of your projects, and navigate to the `my-project` directory. Or, you could start a second instance of the notebook server in the `my-project` directory.
 
 
 ## Creating notebooks inside a virtual environment
