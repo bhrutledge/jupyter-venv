@@ -1,0 +1,10 @@
+jupyter
+jupyterlab
+pandas
+matplotlib
+requests
+requests_cache
+beautifulsoup4
+lxml
+tqdm
+pip-tools
