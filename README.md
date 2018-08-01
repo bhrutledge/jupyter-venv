@@ -94,5 +94,7 @@ You can now use all of the packages that are installed in the `my-project` envir
 ## TODO
 
 - Rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
-- Shell script for adding kernel and symlinking notebook directory
+- Makefile or shell script for adding kernel, symlinking notebook directory, updating requirements
+- Use configuration file to set root notebook directory
+- Prune `requirements.in` to just `jupyter` and `juypterlab`, and move other libraries to a virtual environment
 - `brew install jupyter`?
