@@ -1,4 +1,6 @@
 *.log
 local
 venvs
+venv
 .envrc
+.vscode

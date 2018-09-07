@@ -93,8 +93,8 @@ You can now use all of the packages that are installed in the `my-project` envir
 
 ## TODO
 
-- Rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
-- Makefile or shell script for adding kernel, symlinking notebook directory, updating requirements
+- Document rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
+- Makefile or shell script for creating virtual environment, adding kernel, symlinking notebook directory, updating requirements
 - Use configuration file to set root notebook directory
-- Prune `requirements.in` to just `jupyter` and `juypterlab`, and move other libraries to a virtual environment
+- Add `setup.py` w/ `install_requires=['jupyter']`, so `requirements.in` is just extra packages
 - `brew install jupyter`?
