@@ -8,6 +8,7 @@ These instructions assume a shell environment similar to:
 PROJECT_HOME=$HOME/Projects
 ```
 
+
 ## Install Jupyter
 
 **Note**: If you're using the Anaconda distribution of Python, you can probably skip this step, and just run `jupyter notebook` in the default environment.
@@ -35,6 +36,7 @@ You should now see the Jupyter Notebook server in your web browser, and you can 
 $ ln -s "$PROJECT_HOME/jupyter-venv/venv/bin/jupyter" "$HOME/bin"
 $ jupyter notebook
 ```
+
 
 ## Add virtual environment kernels
 
@@ -93,7 +95,8 @@ You can now use all of the packages that are installed in the `my-project` envir
 ## TODO
 
 - Document rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
-- `Makefile`, `tox.ini`, or shell script for creating virtual environment, adding kernel, symlinking notebook directory, updating requirements
+- `Makefile`, `tox.ini`, or shell script for creating virtual environment, adding kernel, symlinking notebook directory, updating requirements, installing service
 - Use configuration file to set root notebook directory
+- Document `load_launch_agent.sh`, and/or add a `supervisord` configuration
 - Add `setup.py` w/ `install_requires=['jupyter']`, so `requirements.in` is just extra packages
 - `brew install jupyter`?
