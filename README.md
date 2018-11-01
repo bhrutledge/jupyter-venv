@@ -5,10 +5,8 @@ Run one `jupyter notebook` server per user, but allow notebooks to be created in
 These instructions assume a shell environment similar to:
 
 ```text
-WORKON_HOME=$HOME/.virtualenvs
-PROJECT_HOME=$HOME/Code
+PROJECT_HOME=$HOME/Projects
 ```
-
 
 ## Install Jupyter
 
@@ -17,14 +15,14 @@ PROJECT_HOME=$HOME/Code
 Install Jupyter and useful tools like Pandas into a new virtual environment: 
 
 ```text
-$ python3 -m venv $WORKON_HOME/jupyter-venv
-$ source $WORKON_HOME/jupyter-venv/bin/activate
-(jupyter-venv)$ cd $PROJECT_HOME
-(jupyter-venv)$ git clone https://github.com/bhrutledge/jupyter-venv.git
-(jupyter-venv)$ cd jupyter-venv
-(jupyter-venv)$ pip install -r requirements.txt
-(jupyter-venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
-(jupyter-venv)$ jupyter notebook
+$ cd $PROJECT_HOME
+$ git clone https://github.com/bhrutledge/jupyter-venv.git
+$ cd jupyter-venv
+$ python3 -m venv venv
+$ source venv/bin/activate
+(venv)$ pip install -r requirements.txt
+(venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
+(venv)$ jupyter notebook
 ```
 
 You should now see the Jupyter Notebook server in your web browser, and you can create notebooks using `New > Python 3`:
@@ -34,22 +32,22 @@ You should now see the Jupyter Notebook server in your web browser, and you can 
 **Optional**: To run the notebook server without needing to activate its virtual environment, add a symbolic link to the `jupyter` executable to a directory in your `$PATH`, e.g.:
 
 ```text
-$ ln -s "$WORKON_HOME/jupyter-venv/bin/jupyter" "$HOME/bin"
+$ ln -s "$PROJECT_HOME/jupyter-venv/venv/bin/jupyter" "$HOME/bin"
 $ jupyter notebook
 ```
-
 
 ## Add virtual environment kernels
 
 In a new shell session, switch to one of your virtual environments, and install an IPython kernel:
 
 ```text
-$ source $WORKON_HOME/my-project/bin/activate
+$ cd $PROJECT_HOME/my-project
+$ source venv/bin/activate
 
 # The `ipykernel` package should be added to this environment's requirements.txt
-(my-project)$ pip install ipykernel
+(venv)$ pip install ipykernel
 
-(my-project)$ python -m ipykernel install --user --name="$(basename $VIRTUAL_ENV)"
+(venv)$ python -m ipykernel install --user --name=my-project
 ```
 
 On macOS, this will create a Jupyter kernel spec in `$HOME/Library/Jupyter/kernels/my-project`. You can edit `kernel.json` in that directory to set environment variables or pass additional arguments to `python`.
@@ -57,14 +55,15 @@ On macOS, this will create a Jupyter kernel spec in `$HOME/Library/Jupyter/kerne
 
 ## Location of notebooks
 
-By default, new notebooks are created at the root directory of the notebook server (`~/Code/jupyter-venv` in this example). However, this means that notebooks created using the `my-project` kernel will live in the `jupyter-venv` directory. If you'd prefer that notebooks using the `my-project` kernel live in the `my-project` directory (e.g., to commit them to the same Git repo), you could create a symbolic link in the `jupyter-venv` directory:
+By default, new notebooks are created at the root directory of the notebook server (`$HOME/Projects/jupyter-venv` in this example). However, this means that notebooks created using the `my-project` kernel will live in the `jupyter-venv` directory. If you'd prefer that notebooks using the `my-project` kernel live in the `my-project` directory (e.g., to commit them to the same Git repo), you could create a symbolic link in the `jupyter-venv` directory:
 
 ```text
-(jupyter-venv)$ mkdir venvs
-(jupyter-venv)$ echo venvs >> .gitignore
-(jupyter-venv)$ VENV=my-project
-(jupyter-venv)$ mkdir "$PROJECT_HOME/$VENV/jupyter-notebooks"
-(jupyter-venv)$ ln -s "$PROJECT_HOME/$VENV/jupyter-notebooks" "venvs/$VENV"
+$ cd $PROJECT_HOME/jupyter-venv
+$ source venv/bin/activate
+(venv)$ mkdir venvs
+(venv)$ VENV=my-project
+(venv)$ mkdir "$PROJECT_HOME/$VENV/notebooks"
+(venv)$ ln -s "$PROJECT_HOME/$VENV/notebooks" "venvs/$VENV"
 ```
 
 Alternatively, you could run `jupyter notebook` from a parent directory containing all of your projects, and navigate to the `my-project` directory. Or, you could start a second instance of the notebook server in the `my-project` directory.
@@ -94,7 +93,7 @@ You can now use all of the packages that are installed in the `my-project` envir
 ## TODO
 
 - Document rationale for one notebook server per user vs. running `jupyter notebook` in project's virtual environment
-- Makefile or shell script for creating virtual environment, adding kernel, symlinking notebook directory, updating requirements
+- `Makefile`, `tox.ini`, or shell script for creating virtual environment, adding kernel, symlinking notebook directory, updating requirements
 - Use configuration file to set root notebook directory
 - Add `setup.py` w/ `install_requires=['jupyter']`, so `requirements.in` is just extra packages
 - `brew install jupyter`?
