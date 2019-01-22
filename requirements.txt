@@ -6,62 +6,63 @@
 #
 appnope==0.1.0            # via ipython
 backcall==0.1.0           # via ipython
-beautifulsoup4==4.6.3
-bleach==3.0.2             # via nbconvert
+beautifulsoup4==4.7.1
+bleach==3.1.0             # via nbconvert
 certifi==2018.11.29       # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
 cycler==0.10.0            # via matplotlib
 decorator==4.3.0          # via ipython, traitlets
 defusedxml==0.5.0         # via nbconvert
-entrypoints==0.2.3        # via nbconvert
-idna==2.7                 # via requests
+entrypoints==0.3          # via nbconvert
+idna==2.8                 # via requests
 ipykernel==5.1.0          # via ipywidgets, jupyter, jupyter-console, notebook, qtconsole
 ipython-genutils==0.2.0   # via nbformat, notebook, qtconsole, traitlets
 ipython==7.2.0            # via ipykernel, ipywidgets, jupyter-console
 ipywidgets==7.4.2         # via jupyter, qgrid
-jedi==0.13.1              # via ipython
+jedi==0.13.2              # via ipython
 jinja2==2.10              # via nbconvert, notebook
 jsonschema==2.6.0         # via jupyterlab-server, nbformat
-jupyter-client==5.2.3     # via ipykernel, jupyter-console, notebook, qtconsole
+jupyter-client==5.2.4     # via ipykernel, jupyter-console, notebook, qtconsole
 jupyter-console==6.0.0    # via jupyter
 jupyter-core==4.4.0       # via jupyter-client, nbconvert, nbformat, notebook, qtconsole
 jupyter==1.0.0
 jupyterlab-server==0.2.0  # via jupyterlab
 jupyterlab==0.35.4
 kiwisolver==1.0.1         # via matplotlib
-lxml==4.2.5
+lxml==4.3.0
 markupsafe==1.1.0         # via jinja2
 matplotlib==3.0.2
 mistune==0.8.4            # via nbconvert
 nbconvert==5.4.0          # via jupyter, notebook
 nbformat==4.4.0           # via ipywidgets, nbconvert, notebook
-notebook==5.7.2           # via jupyter, jupyterlab, jupyterlab-server, qgrid, widgetsnbextension
+notebook==5.7.4           # via jupyter, jupyterlab, jupyterlab-server, qgrid, widgetsnbextension
 numpy==1.15.4             # via matplotlib, pandas
 pandas==0.23.4
 pandocfilters==1.4.2      # via nbconvert
 parso==0.3.1              # via jedi
 pexpect==4.6.0            # via ipython
 pickleshare==0.7.5        # via ipython
-pip-tools==3.1.0
+pip-tools==3.2.0
 prometheus-client==0.5.0  # via notebook
 prompt-toolkit==2.0.7     # via ipython, jupyter-console
 ptyprocess==0.6.0         # via pexpect, terminado
-pygments==2.3.0           # via ipython, jupyter-console, nbconvert, qtconsole
+pygments==2.3.1           # via ipython, jupyter-console, nbconvert, qtconsole
 pyparsing==2.3.0          # via matplotlib
 python-dateutil==2.7.5    # via jupyter-client, matplotlib, pandas
-pytz==2018.7              # via pandas
+pytz==2018.9              # via pandas
 pyzmq==17.1.2             # via jupyter-client, notebook
 qgrid==1.1.1
 qtconsole==4.4.3          # via jupyter
 requests-cache==0.4.13
-requests==2.20.1
+requests==2.21.0
 send2trash==1.5.0         # via notebook
-six==1.11.0               # via bleach, cycler, pip-tools, prompt-toolkit, python-dateutil, traitlets
+six==1.12.0               # via bleach, cycler, pip-tools, prompt-toolkit, python-dateutil, traitlets
+soupsieve==1.7            # via beautifulsoup4
 terminado==0.8.1          # via notebook
 testpath==0.4.2           # via nbconvert
 tornado==5.1.1            # via ipykernel, jupyter-client, notebook, terminado
-tqdm==4.28.1
+tqdm==4.29.1
 traitlets==4.3.2          # via ipykernel, ipython, ipywidgets, jupyter-client, jupyter-core, nbconvert, nbformat, notebook, qtconsole
 urllib3==1.24.1           # via requests
 wcwidth==0.1.7            # via prompt-toolkit
