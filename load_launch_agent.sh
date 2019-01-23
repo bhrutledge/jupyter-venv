@@ -2,10 +2,10 @@
 # Run Jupyter Notebook as a service on macOS
 # Based on https://gist.github.com/nathanielobrown/1614c1011d8eb5aad291fda7c60c5563
 
-# TODO: Allow a command line argument
-PORT=8888
+COMMAND=${1:-notebook}
+PORT=${2:-8888}
 
-LABEL=org.jupyter.notebook.$(whoami)
+LABEL=org.jupyter.$COMMAND.$(whoami)
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG="$HOME/Library/Logs/$LABEL.log"
 
@@ -24,7 +24,7 @@ cat > "$PLIST" <<EOF
         <key>ProgramArguments</key>
         <array>
             <string>$(which jupyter)</string>
-            <string>notebook</string>
+            <string>$COMMAND</string>
             <string>--no-browser</string>
             <string>--port</string>
             <string>$PORT</string>
