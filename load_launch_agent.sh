@@ -5,11 +5,14 @@
 COMMAND=${1:-notebook}
 PORT=${2:-8888}
 
+JUPYTER=$(which jupyter)
+[[ -s "$JUPYTER" ]] || (echo 'The "jupyter" command is not in your $PATH'; exit 1)
+
 LABEL=org.jupyter.$COMMAND.$(whoami)
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG="$HOME/Library/Logs/$LABEL.log"
 
-echo Writing $PLIST
+echo Writing $PLIST to run $JUPYTER
 
 # TODO: Password? Might be better to set independently
 # See https://jupyter-notebook.readthedocs.io/en/stable/public_server.html
@@ -23,7 +26,7 @@ cat > "$PLIST" <<EOF
 
         <key>ProgramArguments</key>
         <array>
-            <string>$(which jupyter)</string>
+            <string>$JUPYTER</string>
             <string>$COMMAND</string>
             <string>--no-browser</string>
             <string>--port</string>
@@ -60,5 +63,7 @@ echo Logging to $LOG
 while ! [ -f $LOG ]; do
     sleep 1
 done
+
+echo
 
 tail -n 20 -f $LOG
