@@ -7,3 +7,4 @@ requests_cache
 beautifulsoup4
 lxml
 tqdm
+gspread-pandas
