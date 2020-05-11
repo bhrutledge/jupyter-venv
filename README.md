@@ -12,7 +12,7 @@ Clone this repo, then install Jupyter and useful tools like Pandas into a virtua
 $ cd jupyter-venv
 $ python3 -m venv venv
 $ source venv/bin/activate
-(venv)$ pip install -U setuptools pip pip-tools
+(venv)$ pip install -U setuptools wheel pip pip-tools
 (venv)$ pip-sync
 (venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
 (venv)$ jupyter labextension install @jupyter-widgets/jupyterlab-manager
