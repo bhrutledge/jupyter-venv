@@ -8,3 +8,4 @@ beautifulsoup4
 lxml
 tqdm
 gspread-pandas
+altair
