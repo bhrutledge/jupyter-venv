@@ -8,48 +8,60 @@ Run one `jupyter notebook` server per user, but allow notebooks to be created in
 
 Clone this repo, then install Jupyter and useful tools like Pandas into a virtual environment:
 
-```text
-$ cd jupyter-venv
-$ python3 -m venv venv
-$ source venv/bin/activate
-(venv)$ pip install -U setuptools wheel pip pip-tools
-(venv)$ pip-sync
-(venv)$ jupyter nbextension enable --py --sys-prefix widgetsnbextension
-(venv)$ jupyter labextension install @jupyter-widgets/jupyterlab-manager
-(venv)$ deactivate
+```sh
+cd jupyter-venv
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -U setuptools wheel pip pip-tools
+
+pip-sync
+
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+deactivate
 ```
 
 To run Jupyter without needing to activate its virtual environment, add a symbolic link to the `jupyter` executable in a directory in your `$PATH`, e.g.:
 
-```text
-$ ln -s "$PWD/venv/bin/jupyter" "$HOME/.local/bin/jupyter"
+```sh
+ln -sfv "$PWD/venv/bin/jupyter" "$HOME/.local/bin/jupyter"
 ```
 
 Run the notebook server in your home directory:
 
-```
-$ cd
-$ jupyter notebook
+```sh
+cd
+
+jupyter notebook
 ```
 
 You should now see the Jupyter Notebook application in your web browser, showing the contents of your home directory. To create a notebook, navigate to the directory where you'd like to save it, then click `New > Python 3`.
 
 You can also run JupyterLab:
 
-```
-$ jupyter lab
+```sh
+jupyter lab
 ```
 
 ## Creating notebooks for a virtual environment
 
 In a new shell session, activate the virtual environment for one of your projects, and install an IPython kernel:
 
-```text
-$ cd my-project
-$ source venv/bin/activate
-(venv)$ pip install ipykernel
-(venv)$ python -m ipykernel install --user --name=my-project
-(venv)$ deactivate
+```sh
+cd my-project
+
+source venv/bin/activate
+
+pip install ipykernel
+
+python -m ipykernel install --user --name=my-project
+
+deactivate
 ```
 
 - **NOTE**: The `ipykernel` package should be added to the project's `requirements.txt`
@@ -60,17 +72,18 @@ Reload your Jupyter Notebook browser tab, then use `New > my-project` to create 
 
 ## Run as a service on macOS
 
-```text
-$ cd jupyter-venv
-$ ./load_launch_agent.sh
+```sh
+cd jupyter-venv
+
+./load_launch_agent.sh
 ```
 
 This will write a `.plist` file to run the notebook server at <http://localhost:8888>, then show the contents of the log file. Typing `Ctrl-C` will return to the prompt, but leave the server running. When you reboot, the server will start automatically.
 
 For JupyterLab, running at <http://localhost:8889>:
 
-```text
-$ ./load_launch_agent.sh lab 8889
+```sh
+./load_launch_agent.sh lab 8889
 ```
 
 ## Reference
