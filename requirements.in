@@ -9,3 +9,4 @@ lxml
 tqdm
 gspread-pandas
 altair
+papermill
