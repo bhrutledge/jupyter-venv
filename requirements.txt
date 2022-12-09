@@ -12,10 +12,6 @@ anyio==3.6.2
     # via jupyter-server
 appdirs==1.4.4
     # via requests-cache
-appnope==0.1.3
-    # via
-    #   ipykernel
-    #   ipython
 argon2-cffi==21.3.0
     # via
     #   jupyter-server
@@ -44,7 +40,7 @@ cachetools==5.2.0
     # via google-auth
 cattrs==22.2.0
     # via requests-cache
-certifi==2022.9.24
+certifi==2022.12.7
     # via requests
 cffi==1.15.1
     # via argon2-cffi-bindings
@@ -69,8 +65,6 @@ entrypoints==0.4
     #   altair
     #   jupyter-client
     #   papermill
-exceptiongroup==1.0.4
-    # via cattrs
 executing==1.2.0
     # via stack-data
 fastjsonschema==2.16.2
@@ -94,10 +88,6 @@ idna==3.4
     # via
     #   anyio
     #   requests
-importlib-metadata==5.1.0
-    # via
-    #   jupyterlab-server
-    #   nbconvert
 ipykernel==6.17.1
     # via
     #   ipywidgets
@@ -411,5 +401,3 @@ websocket-client==1.4.2
     # via jupyter-server
 widgetsnbextension==4.0.3
     # via ipywidgets
-zipp==3.10.0
-    # via importlib-metadata
