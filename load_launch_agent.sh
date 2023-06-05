@@ -6,13 +6,14 @@ COMMAND=${1:-notebook}
 PORT=${2:-8888}
 
 JUPYTER=$(which jupyter)
+# shellcheck disable=SC2016
 [[ -s "$JUPYTER" ]] || (echo 'The "jupyter" command is not in your $PATH'; exit 1)
 
-LABEL=org.jupyter.$COMMAND.$(whoami)
+LABEL=org.jupyter.$COMMAND
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG="$HOME/Library/Logs/$LABEL.log"
 
-echo Writing $PLIST to run $JUPYTER
+echo "Writing $PLIST to run $JUPYTER"
 
 # TODO: Password? Might be better to set independently
 # See https://jupyter-notebook.readthedocs.io/en/stable/public_server.html
@@ -51,19 +52,19 @@ cat > "$PLIST" <<EOF
 </plist>
 EOF
 
-if launchctl list | grep -q $LABEL; then
-    echo Unloading $LABEL
+if launchctl list | grep -q "$LABEL"; then
+    echo Unloading "$LABEL"
     launchctl unload "$PLIST"
 fi
 
-echo Loading $LABEL
+echo Loading "$LABEL"
 launchctl load "$PLIST"
 
-echo Logging to $LOG
-while ! [ -f $LOG ]; do
+echo Logging to "$LOG"
+while ! [ -f "$LOG" ]; do
     sleep 1
 done
 
 echo
 
-tail -n 20 -f $LOG
+tail -n 20 -f "$LOG"
